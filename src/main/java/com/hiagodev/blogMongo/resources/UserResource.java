@@ -1,27 +1,28 @@
 package com.hiagodev.blogMongo.resources;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hiagodev.blogMongo.domain.User;
+import com.hiagodev.blogMongo.service.UserService;
 
 @RestController
 @RequestMapping(value = "/users")
 public class UserResource {
     
+    @Autowired
+    private UserService userService;
+
     @GetMapping
     public ResponseEntity<List<User>> findAll(){
-        User user = new User("1","maria","marial@gmail.com");
-        User user2 = new User("1","mario","mara@gmail.com");
-        List<User> list = new ArrayList<>();
-        list.add(user);
-        list.add(user2);
-        
+        List<User> list = userService.findAll();
         return ResponseEntity.ok(list);
     }
+    
 }
