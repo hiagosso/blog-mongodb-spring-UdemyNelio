@@ -19,8 +19,6 @@ import com.hiagodev.blogMongo.dto.UserDTO;
 import com.hiagodev.blogMongo.service.UserService;
 
 
-
-
 @RestController
 @RequestMapping(value = "/users")
 public class UserResource {
