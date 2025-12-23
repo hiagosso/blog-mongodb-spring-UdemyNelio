@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hiagodev.blogMongo.domain.Post;
 import com.hiagodev.blogMongo.domain.User;
 import com.hiagodev.blogMongo.dto.UserDTO;
 import com.hiagodev.blogMongo.service.UserService;
@@ -58,5 +59,11 @@ public class UserResource {
         obj.setId(id);
         obj = userService.update(obj);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User obj = userService.findById(id);
+        return ResponseEntity.ok(obj.getPosts());
     }
 }
